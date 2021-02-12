@@ -72,6 +72,7 @@ public class CSPDetailsFragment extends Fragment {
 
             //binding.etDob.setText(dob1);
         }
+
         binding.etSpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
