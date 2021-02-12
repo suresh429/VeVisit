@@ -72,6 +72,13 @@ public class CSPDetailsFragment extends Fragment {
 
             //binding.etDob.setText(dob1);
         }
+        binding.etSpinner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.spinnerCSPCode.performClick();
+            }
+        });
+
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -133,6 +140,20 @@ public class CSPDetailsFragment extends Fragment {
                             cspCode = parent.getSelectedItem().toString();
                             if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
                                 getCSPDetails(cspCode);
+                                binding.etSpinner.setText(cspCode);
+                            }else {
+                                binding.etSpinner.setText("");
+                                binding.etCspname.setText("");
+                                binding.etMobile.setText("");
+                                binding.etPan.setText("");
+                                binding.etAadhar.setText("");
+                                binding.etLocation.setText("");
+                                binding.etVillage.setText("");
+                                binding.etPin.setText("");
+                                binding.etTehsil.setText("");
+                                binding.etSsa.setText("");
+                                binding.etDob.setText("");
+
                             }
 
                         }
