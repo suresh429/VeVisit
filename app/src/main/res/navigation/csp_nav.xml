@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/csp_nav"
+    app:startDestination="@id/cspDetailsFragment">
+
+    <fragment
+        android:id="@+id/cspDetailsFragment"
+        android:label="CSP Details"
+        android:name="com.vcspinfo.vevist.fragments.CSPDetailsFragment"
+        tools:layout="@layout/fragment_csp_details">
+
+        <action
+            android:id="@+id/action_cspDetailsFragment_to_infraFragment"
+            app:destination="@id/infraFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/infraFragment"
+        android:name="com.vcspinfo.vevist.fragments.InfraFragment"
+        android:label="Infra"
+        tools:layout="@layout/fragment_infra" >
+        <action
+            android:id="@+id/action_infraFragment_to_documentationFragment"
+            app:destination="@id/documentationFragment" />
+        <action
+            android:id="@+id/action_infraFragment_to_cspDetailsFragment"
+            app:destination="@id/cspDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/documentationFragment"
+        android:name="com.vcspinfo.vevist.fragments.DocumentationFragment"
+        android:label="Documentation"
+        tools:layout="@layout/fragment_documentation" >
+        <action
+            android:id="@+id/action_documentationFragment_to_zeroToleranceFragment"
+            app:destination="@id/zeroToleranceFragment" />
+        <action
+            android:id="@+id/action_documentationFragment_to_infraFragment"
+            app:destination="@id/infraFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/zeroToleranceFragment"
+        android:name="com.vcspinfo.vevist.fragments.ZeroToleranceFragment"
+        android:label="Zero Tolerance"
+        tools:layout="@layout/fragment_zero_tolerance" >
+        <action
+            android:id="@+id/action_zeroToleranceFragment_to_documentationFragment"
+            app:destination="@id/documentationFragment" />
+        <action
+            android:id="@+id/action_zeroToleranceFragment_to_certificationFragment"
+            app:destination="@id/certificationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/certificationFragment"
+        android:name="com.vcspinfo.vevist.fragments.CertificationFragment"
+        android:label="Certification" >
+        <action
+            android:id="@+id/action_certificationFragment_to_acitivitiesFragment"
+            app:destination="@id/acitivitiesFragment" />
+        <action
+            android:id="@+id/action_certificationFragment_to_zeroToleranceFragment"
+            app:destination="@id/zeroToleranceFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/acitivitiesFragment"
+        android:name="com.vcspinfo.vevist.fragments.AcitivitiesFragment"
+        android:label="Activities"
+        tools:layout="@layout/fragment_acitivities" >
+        <action
+            android:id="@+id/action_acitivitiesFragment_to_certificationFragment"
+            app:destination="@id/certificationFragment" />
+    </fragment>
+
+</navigation>

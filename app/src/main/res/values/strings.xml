@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">VeVisit</string>
+    <string name="new_csp_visit">New CSP Visit</string>
+    <string name="logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="question101">Sign Board/Main Banner of CSP: *</string>
+    <string name="question102">DO &amp; Don\'t Banner: *</string>
+    <string name="question103">Service &amp; Account opening Charges Banner: *</string>
+    <string name="question104">Complaint redressal Numbers Banner?: *</string>
+    <string name="question105">Working Hours Notice/Banner: *</string>
+    <string name="question106">BCP Banner: *</string>
+    <string name="question107">PMJDY Tollfree No Banner: *</string>
+    <string name="question108">Helpline Number of KO Banner?: *</string>
+    <string name="question109">Standard counter available: *</string>
+    <string name="question110">Sitting arrangement for customers?: *</string>
+    <string name="question111">UPS | Inverter availability: *</string>
+    <string name="question112">Micro ATM Allotted: *</string>
+    <string name="question113">Fake note detecting machine?: *</string>
+    <string name="question114">CCTV camera installed: *</string>
+    <string name="question115">If CCTV Installed then in working: *</string>
+    <string name="question116">Passbook printer: *</string>
+    <string name="question117">Multiple Terminal enabled: *</string>
+    <string name="question118">Voicemail Software: *</string>
+    <string name="question119">Arogya sethu App: *</string>
+    <string name="question120">Sanitizer , Hand wash provision: *</string>
+    <string name="question121">Cash safe|locker available: *</string>
+
+
+    <string name="question201">Standard Transaction Register: *</string>
+    <string name="question202">Account Opening Register: *</string>
+    <string name="question203">AOF Register: *</string>
+    <string name="question204">Compliant Register: *</string>
+    <string name="question205">Visit Register: *</string>
+    <string name="question206">Loan Application Register: *</string>
+    <string name="question207">Customer Contact Register: * </string>
+    <string name="question208">SSS Register: *</string>
+    <string name="question209">Authority Letter: *</string>
+    <string name="question210">CSP Agreement: *</string>
+    <string name="question211">If Agreement then Validity?: *</string>
+    <string name="question212">Bank Passbook: *</string>
+    <string name="question213">PAN: *</string>
+    <string name="question214">Aadhaar: *</string>
+    <string name="question215">10+2 Certificate: *</string>
+    <string name="question216">PVR Copy: *</string>
+    <string name="question217">If PVR then validity: *</string>
+    <string name="question218">DDR+CSP Application: *</string>
+    <string name="question219">2 Referee KYC: *</string>
+    <string name="question220">CSP Sworn Affidavit Notrised Stamp 100/-: *</string>
+    <string name="question221">BCP Testing Documents: *</string>
+    <string name="question222">CSP ID Card: *</string>
+    <string name="question223">CSP ID Wearing: *</string>
+    <string name="question224">SUB KO Documents: *</string>
+    <string name="question225">All Documents in Folder: *</string>
+
+
+    <string name="question301">CSP situated at allotted Location?: *</string>
+    <string name="question302">System Generated Receipt slip issuing to the Customers?: *</string>
+    <string name="question303">Customers\' Signature/Thumb on printed slip?: *</string>
+    <string name="question304">ANY manual receipt slip found at CSP?: *</string>
+    <string name="question305">Real time payment by CSP to Customer?: *</string>
+    <string name="question306">STDR not exceeding Rs.10000?: *</string>
+    <string name="question307">Fake Maual STDR passbook Found?: *</string>
+    <string name="question308">Partial Payment found?: *</string>
+    <string name="question309">Round Tripping transction found?: *</string>
+    <string name="question310">Any complaint about extra charged?: *</string>
+    <string name="question311">Other Bank m-ATM/Mobile app found?: *</string>
+    <string name="question312">Additional submission for PMJDDY App?: *</string>
+    <string name="question313">Insurance cover for cash held at CSP?: *</string>
+    <string name="question314">CSP outlet operated by Unauthorized person?: *</string>
+    <string name="question315">CSP Outlet long run by SUB-KO?: *</string>
+    <string name="question316">Two or more CSP from same location?: *</string>
+    <string name="question317">How many AOF submission to Branch/DSH this month?: *</string>
+    <string name="question318">How Many AOF pending with Branch/DSH for authorization?: *</string>
+    <string name="question319">Any complaints against the CSP?: *</string>
+
+
+    <string name="question401">Authority Letter?: *</string>
+    <string name="question402">IIBF certification examination passed?: *</string>
+    <string name="question403">DRA Examination passed?: *</string>
+    <string name="question404">Training Certificate issued?: *</string>
+    <string name="question405">Any other Certificate?: *</string>
+
+
+    <string name="question501">Total Number of Accounts?: *</string>
+    <string name="question502">Total RD enrolled in last month?: *</string>
+    <string name="question503">Total STDR enrolled in last month?: *</string>
+    <string name="question504">Total APY enrolled in last month?: *</string>
+    <string name="question505">Total PMJJBY enrolled in last month?: *</string>
+    <string name="question506">Total PMSBY enrolled in last month?: *</string>
+    <string name="question507">How many days opened CSP center in last month?: *</string>
+    <string name="question508">Daily Transactions Count?: *</string>
+    <string name="question509">Daily transactions of Passbook printer?: *</string>
+    <string name="question510">Total NPA Accounts?: *</string>
+    <string name="question511">Remarks by CSP?: *</string>
+    <string name="question512">Remarks by Visitor?: *</string>
+    <string name="question513">Did you met Gram Mukhiya?: *</string>
+    <string name="question514">Did you met Branch Head?: *</string>
+
+</resources>
