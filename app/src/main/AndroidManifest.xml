@@ -13,9 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.CSPDetailsActivityTest"
-            android:theme="@style/NoActionBar">
-        </activity>
+        <activity android:name=".activities.ActivitiesActivity"></activity>
+        <activity android:name=".activities.CertificationActivity" />
+        <activity android:name=".activities.ZeroToleranceActivity" />
+        <activity android:name=".activities.DocumentationActivity" />
+        <activity android:name=".activities.InfraActivity" />
         <activity android:name=".activities.CSPDetailsActivity" />
         <activity
             android:name=".activities.LoginActivity"

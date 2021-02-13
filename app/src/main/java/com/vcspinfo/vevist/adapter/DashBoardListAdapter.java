@@ -1,17 +1,14 @@
-package com.vcspinfo.vevist.activities;
+package com.vcspinfo.vevist.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.vcspinfo.vevist.R;
 import com.vcspinfo.vevist.databinding.DashboardListItemBinding;
 import com.vcspinfo.vevist.models.DashBoardModel;
 

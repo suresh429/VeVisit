@@ -5,16 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.vcspinfo.vevist.R;
 
+import com.vcspinfo.vevist.adapter.DashBoardListAdapter;
 import com.vcspinfo.vevist.databinding.ActivityDashboardBinding;
 import com.vcspinfo.vevist.helper.UserSessionManager;
 import com.vcspinfo.vevist.models.DashBoardModel;
@@ -115,7 +114,7 @@ public class DashboardActivity extends AppCompatActivity {
         switch (id) {
             case R.id.newCSP:
 
-                Intent intent1 = new Intent(DashboardActivity.this, CSPDetailsActivityTest.class);
+                Intent intent1 = new Intent(DashboardActivity.this, CSPDetailsActivity.class);
                 intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent1);
 
