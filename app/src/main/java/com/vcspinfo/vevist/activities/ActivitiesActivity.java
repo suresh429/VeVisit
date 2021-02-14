@@ -26,9 +26,10 @@ public class ActivitiesActivity extends AppCompatActivity {
 
         binding.btnNext.setOnClickListener(v -> Toast.makeText(ActivitiesActivity.this, "Save", Toast.LENGTH_SHORT).show());
         binding.btnPrevious.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivitiesActivity.this,CertificationActivity.class);
+           /* Intent intent = new Intent(ActivitiesActivity.this,CertificationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(intent);*/
+            onBackPressed();
         });
     }
 

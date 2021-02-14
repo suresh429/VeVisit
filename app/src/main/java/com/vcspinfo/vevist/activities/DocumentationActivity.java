@@ -31,9 +31,10 @@ public class DocumentationActivity extends AppCompatActivity {
 
         });
         binding.btnPrevious.setOnClickListener(v -> {
-            Intent intent = new Intent(DocumentationActivity.this,InfraActivity.class);
+           /* Intent intent = new Intent(DocumentationActivity.this,InfraActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(intent);*/
+            onBackPressed();
 
         });
     }

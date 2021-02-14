@@ -31,9 +31,10 @@ public class CertificationActivity extends AppCompatActivity {
 
         });
         binding.btnPrevious.setOnClickListener(v -> {
-            Intent intent = new Intent(CertificationActivity.this,ZeroToleranceActivity.class);
+            /*Intent intent = new Intent(CertificationActivity.this,ZeroToleranceActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(intent);*/
+            onBackPressed();
         });
     }
 

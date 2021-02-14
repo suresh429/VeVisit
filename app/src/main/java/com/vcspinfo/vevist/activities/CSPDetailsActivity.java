@@ -8,6 +8,7 @@ import androidx.navigation.Navigation;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,7 +72,7 @@ public class CSPDetailsActivity extends AppCompatActivity {
 
         binding.btnNext.setOnClickListener(v -> {
 
-            if (Objects.requireNonNull(binding.etCspname.getText()).toString().isEmpty() ||
+            /*if (Objects.requireNonNull(binding.etCspname.getText()).toString().isEmpty() ||
                     Objects.requireNonNull(binding.etMobile.getText()).toString().isEmpty() ||
                     Objects.requireNonNull(binding.etPan.getText()).toString().isEmpty() ||
                     Objects.requireNonNull(binding.etAadhar.getText()).toString().isEmpty() ||
@@ -88,9 +89,17 @@ public class CSPDetailsActivity extends AppCompatActivity {
                 intent.putExtra("csp_code",cspCode);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+            }*/
+
+            if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
+                Intent intent = new Intent(CSPDetailsActivity.this, InfraActivity.class);
+                intent.putExtra("csp_code", cspCode);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+
+            }else {
+                Toast.makeText(this, "Please Select CSP Code", Toast.LENGTH_SHORT).show();
             }
-
-
         });
 
         getCSPList();
@@ -127,6 +136,9 @@ public class CSPDetailsActivity extends AppCompatActivity {
                             cspCode = parent.getSelectedItem().toString();
                             if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
                                 getCSPDetails(cspCode);
+                               SharedPreferences mSharedPref = getSharedPreferences("VE_VISIT_INFRA",MODE_PRIVATE);
+                               SharedPreferences.Editor editor=mSharedPref.edit();
+                               editor.clear().apply();
                                 binding.etSpinner.setText(cspCode);
                             }else {
 

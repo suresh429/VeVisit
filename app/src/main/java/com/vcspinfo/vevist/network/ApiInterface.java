@@ -84,10 +84,6 @@ public interface ApiInterface {
             @Query("visit[option_ddr_csp]" ) String question218,
             @Query("visit[option_kyc_referee]" ) String question219,
             @Query("visit[option_sworn_affidavit]" ) String question220,
-
-            // question was missing
-            @Query("visit[document_feidility]" ) String document_feidility,
-
             @Query("visit[option_bcp_testing]" ) String question221,
             @Query("visit[option_csp_id]" ) String question222,
             @Query("visit[option_csp_id_wear]" ) String question223,
@@ -115,8 +111,7 @@ public interface ApiInterface {
             @Query("visit[complaint_csp_count]" ) String question319,
 
 
-            // one question key missing 401
-            //@Query("visit[option_iibf]" ) String question401,
+            @Query("visit[option_authority_letter]" ) String question401,
             @Query("visit[option_iibf]" ) String question402,
             @Query("visit[option_dra]" ) String question403,
             @Query("visit[option_training_certificate]" ) String question404,
@@ -135,11 +130,8 @@ public interface ApiInterface {
             @Query("visit[remarks_csp]" ) String question511,
             @Query("visit[remarks_visitor]" ) String question512,
             @Query("visit[option_visit_head]" ) String question513,
-            @Query("visit[comments_head]" ) String question514,
-
-            //questions was missing in website
-
-            @Query("visit[option_visit_branch]" ) String option_visit_branch,
+            @Query("visit[comments_head]" ) String comments_head,
+            @Query("visit[option_visit_branch]" ) String question514,
             @Query("visit[comments_branch]" ) String comments_branch,
 
             @Query("visit[photo]" ) String photo

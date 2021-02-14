@@ -32,9 +32,10 @@ public class ZeroToleranceActivity extends AppCompatActivity {
 
         });
         binding.btnPrevious.setOnClickListener(v -> {
-            Intent intent = new Intent(ZeroToleranceActivity.this,DocumentationActivity.class);
+            /*Intent intent = new Intent(ZeroToleranceActivity.this,DocumentationActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
+            startActivity(intent);*/
+            onBackPressed();
         });
     }
     @Override
