@@ -295,6 +295,28 @@
                 android:id="@+id/radioNoQuestion13"/>
         </RadioGroup>
 
+
+        <com.google.android.material.textfield.TextInputLayout
+           android:id="@+id/comments_head_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/comments_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/proxima_nova_regular"
+                android:hint="@string/comments"
+                android:inputType="text">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -326,6 +348,26 @@
         </RadioGroup>
 
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/comments_branch_Layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            app:boxBackgroundColor="@android:color/transparent"
+            android:visibility="gone">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/comments_branch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/proxima_nova_regular"
+                android:hint="@string/comments"
+                android:inputType="text">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

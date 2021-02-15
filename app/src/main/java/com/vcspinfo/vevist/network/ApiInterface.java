@@ -30,7 +30,7 @@ public interface ApiInterface {
 
     @Headers("Content-Type: application/json")
     @GET("GetCSPs/{token}")
-    Call<List<CSPDetailsListResponse>> getCspDetailsList(@Path("token") String token);
+    Call<CSPDetailsListResponse> getCspDetailsList(@Path("token") String token);
 
     @Headers("Content-Type: application/json")
     @GET("CSPDetails/{csp_code}")

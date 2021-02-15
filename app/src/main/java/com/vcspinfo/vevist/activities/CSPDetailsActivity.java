@@ -41,7 +41,8 @@ public class CSPDetailsActivity extends AppCompatActivity {
 
     UserSessionManager userSessionManager;
 
-    String cspCode,cspCode1;
+    String cspCode="Select CSP Code", cspCode1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,43 +54,13 @@ public class CSPDetailsActivity extends AppCompatActivity {
 
         userSessionManager = new UserSessionManager(this);
         cspArrayList = new ArrayList<>();
+        getCSPList();
 
-       /* if (getIntent() != null){
-            cspCode = getIntent().getStringExtra("csp_code");
-
-        }
-
-        if (cspCode != null){
-            getCSPDetails(cspCode);
-            binding.etSpinner.setText(cspCode);
-
-        }else {
-            getCSPList();
-            binding.spinnerCSPCode.setSelection(2);
-        }*/
 
         binding.etSpinner.setOnClickListener(v -> binding.spinnerCSPCode.performClick());
 
         binding.btnNext.setOnClickListener(v -> {
 
-            /*if (Objects.requireNonNull(binding.etCspname.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etMobile.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etPan.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etAadhar.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etVillage.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etLocation.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etPin.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etTehsil.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etSsa.getText()).toString().isEmpty() ||
-                    Objects.requireNonNull(binding.etDob.getText()).toString().isEmpty()) {
-                Toast.makeText(CSPDetailsActivity.this, "Please enter Details", Toast.LENGTH_SHORT).show();
-            } else {
-
-                Intent intent = new Intent(CSPDetailsActivity.this,InfraActivity.class);
-                intent.putExtra("csp_code",cspCode);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }*/
 
             if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
                 Intent intent = new Intent(CSPDetailsActivity.this, InfraActivity.class);
@@ -97,31 +68,32 @@ public class CSPDetailsActivity extends AppCompatActivity {
                 //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
 
-            }else {
+            } else {
                 Toast.makeText(this, "Please Select CSP Code", Toast.LENGTH_SHORT).show();
             }
         });
 
-        getCSPList();
+
 
     }
 
     public void getCSPList() {
         binding.progressCircular.setVisibility(View.VISIBLE);
-        Call<List<CSPDetailsListResponse>> call = RetrofitService.createService(ApiInterface.class, CSPDetailsActivity.this).getCspDetailsList(userSessionManager.getUserDetails().get("token"));
-        call.enqueue(new Callback<List<CSPDetailsListResponse>>() {
+        Call<CSPDetailsListResponse> call = RetrofitService.createService(ApiInterface.class, CSPDetailsActivity.this).getCspDetailsList(userSessionManager.getUserDetails().get("token"));
+        call.enqueue(new Callback<CSPDetailsListResponse>() {
             @Override
-            public void onResponse(@NonNull Call<List<CSPDetailsListResponse>> call, @NonNull Response<List<CSPDetailsListResponse>> response) {
+            public void onResponse(@NonNull Call<CSPDetailsListResponse> call, @NonNull Response<CSPDetailsListResponse> response) {
 
                 if (response.isSuccessful()) {
                     binding.progressCircular.setVisibility(View.GONE);
 
-                    List<CSPDetailsListResponse> cspDetailsListResponses = response.body();
+                    assert response.body() != null;
+                    List<CSPDetailsListResponse.DataBean.PartnersBean> cspDetailsListResponses = response.body().getData().getPartners();
 
                     cspArrayList.clear();
                     cspArrayList.add("Select CSP Code");
                     assert cspDetailsListResponses != null;
-                    for (CSPDetailsListResponse bn : cspDetailsListResponses) {
+                    for (CSPDetailsListResponse.DataBean.PartnersBean bn : cspDetailsListResponses) {
 
                         cspArrayList.add(bn.getCspCode());
 
@@ -136,11 +108,11 @@ public class CSPDetailsActivity extends AppCompatActivity {
                             cspCode = parent.getSelectedItem().toString();
                             if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
                                 getCSPDetails(cspCode);
-                               SharedPreferences mSharedPref = getSharedPreferences("VE_VISIT_INFRA",MODE_PRIVATE);
-                               SharedPreferences.Editor editor=mSharedPref.edit();
-                               editor.clear().apply();
+                                SharedPreferences mSharedPref = getSharedPreferences("VE_VISIT_INFRA", MODE_PRIVATE);
+                                SharedPreferences.Editor editor = mSharedPref.edit();
+                                editor.clear().apply();
                                 binding.etSpinner.setText(cspCode);
-                            }else {
+                            } else {
 
                                 binding.etSpinner.setText("");
                                 binding.etCspname.setText("");
@@ -171,7 +143,7 @@ public class CSPDetailsActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<CSPDetailsListResponse>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<CSPDetailsListResponse> call, @NonNull Throwable t) {
                 if (t instanceof NoConnectivityException) {
                     // show No Connectivity message to user or do whatever you want.
                     Toast.makeText(CSPDetailsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();

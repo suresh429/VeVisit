@@ -31,6 +31,7 @@ public class UserSessionManager {
     public static final String KEY_ROLE = "role";
     public static final String KEY_TOKEN = "authentication_token";
 
+    public static final String CSP_CODE = "csp_code";
     public static final String QUESTION_101 = "question_101";
     public static final String QUESTION_102 = "question_102";
     public static final String QUESTION_103 = "question_103";
@@ -142,97 +143,31 @@ public class UserSessionManager {
         editor.commit();
     }
 
-    public void createCSPDetails(String question_101,
-                                 String question_102,
-                                 String question_103,
-                                 String question_104,
-                                 String question_105,
-                                 String question_106,
-                                 String question_107,
-                                 String question_108,
-                                 String question_109,
-                                 String question_110,
-                                 String question_111,
-                                 String question_112,
-                                 String question_113,
-                                 String question_114,
-                                 String question_115,
-                                 String question_116,
-                                 String question_117,
-                                 String question_118,
-                                 String question_119,
-                                 String question_120,
-                                 String question_121,
+    public void createInfra(String csp_code, String question_101,
+                            String question_102,
+                            String question_103,
+                            String question_104,
+                            String question_105,
+                            String question_106,
+                            String question_107,
+                            String question_108,
+                            String question_109,
+                            String question_110,
+                            String question_111,
+                            String question_112,
+                            String question_113,
+                            String question_114,
+                            String question_115,
+                            String question_116,
+                            String question_117,
+                            String question_118,
+                            String question_119,
+                            String question_120,
+                            String question_121
 
-                                 String question_201,
-                                 String question_202,
-                                 String question_203,
-                                 String question_204,
-                                 String question_205,
-                                 String question_206,
-                                 String question_207,
-                                 String question_208,
-                                 String question_209,
-                                 String question_210,
-                                 String question_211,
-                                 String question_212,
-                                 String question_213,
-                                 String question_214,
-                                 String question_215,
-                                 String question_216,
-                                 String question_217,
-                                 String question_218,
-                                 String question_219,
-                                 String question_220,
-                                 String question_221,
-                                 String question_222,
-                                 String question_223,
-                                 String question_224,
-                                 String question_225,
 
-                                 String question_301,
-                                 String question_302,
-                                 String question_303,
-                                 String question_304,
-                                 String question_305,
-                                 String question_306,
-                                 String question_307,
-                                 String question_308,
-                                 String question_309,
-                                 String question_310,
-                                 String question_311,
-                                 String question_312,
-                                 String question_313,
-                                 String question_314,
-                                 String question_315,
-                                 String question_316,
-                                 String question_317,
-                                 String question_318,
-                                 String question_319,
-
-                                 String question_401,
-                                 String question_402,
-                                 String question_403,
-                                 String question_404,
-                                 String question_405,
-
-                                 String question_501,
-                                 String question_502,
-                                 String question_503,
-                                 String question_504,
-                                 String question_505,
-                                 String question_506,
-                                 String question_507,
-                                 String question_508,
-                                 String question_509,
-                                 String question_510,
-                                 String question_511,
-                                 String question_512,
-                                 String question_513,
-                                 String question_514,
-                                 String question_515,
-                                 String question_516
     ) {
+        editor.putString(CSP_CODE, csp_code);
         editor.putString(QUESTION_101, question_101);
         editor.putString(QUESTION_102, question_102);
         editor.putString(QUESTION_103, question_103);
@@ -254,6 +189,42 @@ public class UserSessionManager {
         editor.putString(QUESTION_119, question_119);
         editor.putString(QUESTION_120, question_120);
         editor.putString(QUESTION_121, question_121);
+
+
+        editor.commit();
+    }
+
+    public void createDocumentation(
+
+            String question_201,
+            String question_202,
+            String question_203,
+            String question_204,
+            String question_205,
+            String question_206,
+            String question_207,
+            String question_208,
+            String question_209,
+            String question_210,
+            String question_211,
+            String question_212,
+            String question_213,
+            String question_214,
+            String question_215,
+            String question_216,
+            String question_217,
+            String question_218,
+            String question_219,
+            String question_220,
+            String question_221,
+            String question_222,
+            String question_223,
+            String question_224,
+            String question_225
+
+
+    ) {
+
 
         editor.putString(QUESTION_201, question_201);
         editor.putString(QUESTION_202, question_202);
@@ -281,6 +252,35 @@ public class UserSessionManager {
         editor.putString(QUESTION_224, question_224);
         editor.putString(QUESTION_225, question_225);
 
+
+        editor.commit();
+    }
+
+
+    public void createZeroTolerance(
+
+            String question_301,
+            String question_302,
+            String question_303,
+            String question_304,
+            String question_305,
+            String question_306,
+            String question_307,
+            String question_308,
+            String question_309,
+            String question_310,
+            String question_311,
+            String question_312,
+            String question_313,
+            String question_314,
+            String question_315,
+            String question_316,
+            String question_317,
+            String question_318,
+            String question_319
+    ) {
+
+
         editor.putString(QUESTION_301, question_301);
         editor.putString(QUESTION_302, question_302);
         editor.putString(QUESTION_303, question_303);
@@ -300,11 +300,50 @@ public class UserSessionManager {
         editor.putString(QUESTION_317, question_317);
         editor.putString(QUESTION_318, question_318);
         editor.putString(QUESTION_319, question_319);
+
+
+        editor.commit();
+    }
+
+
+    public void createCertifications(String question_401,
+                                     String question_402,
+                                     String question_403,
+                                     String question_404,
+                                     String question_405
+
+
+    ) {
+
         editor.putString(QUESTION_401, question_401);
         editor.putString(QUESTION_402, question_402);
         editor.putString(QUESTION_403, question_403);
         editor.putString(QUESTION_404, question_404);
         editor.putString(QUESTION_405, question_405);
+
+        editor.commit();
+    }
+
+
+    public void createActivities(
+            String question_501,
+            String question_502,
+            String question_503,
+            String question_504,
+            String question_505,
+            String question_506,
+            String question_507,
+            String question_508,
+            String question_509,
+            String question_510,
+            String question_511,
+            String question_512,
+            String question_513,
+            String question_514,
+            String question_515,
+            String question_516
+    ) {
+
         editor.putString(QUESTION_501, question_501);
         editor.putString(QUESTION_502, question_502);
         editor.putString(QUESTION_503, question_503);
@@ -349,8 +388,9 @@ public class UserSessionManager {
     }
 
 
-    public HashMap<String, String> getCSPDetails() {
+    public HashMap<String, String> getInfra() {
         HashMap<String, String> profile = new HashMap<>();
+        profile.put("csp_code", pref.getString(CSP_CODE, null));
         profile.put("question_101", pref.getString(QUESTION_101, null));
         profile.put("question_102", pref.getString(QUESTION_102, null));
         profile.put("question_103", pref.getString(QUESTION_103, null));
@@ -372,6 +412,14 @@ public class UserSessionManager {
         profile.put("question_119", pref.getString(QUESTION_119, null));
         profile.put("question_120", pref.getString(QUESTION_120, null));
         profile.put("question_121", pref.getString(QUESTION_121, null));
+
+
+        return profile;
+    }
+
+    public HashMap<String, String> getDocumentation() {
+        HashMap<String, String> profile = new HashMap<>();
+
 
         profile.put("question_201", pref.getString(QUESTION_201, null));
         profile.put("question_202", pref.getString(QUESTION_202, null));
@@ -399,6 +447,14 @@ public class UserSessionManager {
         profile.put("question_224", pref.getString(QUESTION_224, null));
         profile.put("question_225", pref.getString(QUESTION_225, null));
 
+
+        return profile;
+    }
+
+    public HashMap<String, String> getZeroTolerance() {
+        HashMap<String, String> profile = new HashMap<>();
+
+
         profile.put("question_301", pref.getString(QUESTION_301, null));
         profile.put("question_302", pref.getString(QUESTION_302, null));
         profile.put("question_303", pref.getString(QUESTION_303, null));
@@ -419,11 +475,26 @@ public class UserSessionManager {
         profile.put("question_318", pref.getString(QUESTION_318, null));
         profile.put("question_319", pref.getString(QUESTION_319, null));
 
+
+        return profile;
+    }
+
+    public HashMap<String, String> getCertificates() {
+        HashMap<String, String> profile = new HashMap<>();
+
+
         profile.put("question_401", pref.getString(QUESTION_401, null));
         profile.put("question_402", pref.getString(QUESTION_402, null));
         profile.put("question_403", pref.getString(QUESTION_403, null));
         profile.put("question_404", pref.getString(QUESTION_404, null));
         profile.put("question_405", pref.getString(QUESTION_405, null));
+
+
+        return profile;
+    }
+
+    public HashMap<String, String> getActivities() {
+        HashMap<String, String> profile = new HashMap<>();
 
         profile.put("question_501", pref.getString(QUESTION_501, null));
         profile.put("question_502", pref.getString(QUESTION_502, null));

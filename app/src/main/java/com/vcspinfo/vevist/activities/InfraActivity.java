@@ -92,7 +92,7 @@ public class InfraActivity extends AppCompatActivity {
                     binding.radioGroupQuestion20.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion21.getCheckedRadioButtonId() != -1
             ) {
-                userSessionManager.createCSPDetails(
+                userSessionManager.createInfra(cspCode,
                         question_101,
                         question_102,
                         question_103,
@@ -113,72 +113,8 @@ public class InfraActivity extends AppCompatActivity {
                         question_118,
                         question_119,
                         question_120,
-                        question_121,
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        question_121
+
                 );
                 Intent intent = new Intent(InfraActivity.this, DocumentationActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -395,8 +331,6 @@ public class InfraActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
-
-
 
 
     }
