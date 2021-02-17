@@ -56,4 +56,14 @@ dependencies {
 
     implementation "com.github.bumptech.glide:glide:4.11.0"
     annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+    /**
+     * For managing request permission
+     */
+    implementation 'com.karumi:dexter:6.0.0'
+
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:2.2.10"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+
 }

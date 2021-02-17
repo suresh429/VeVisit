@@ -108,9 +108,29 @@ public class CSPDetailsActivity extends AppCompatActivity {
                             cspCode = parent.getSelectedItem().toString();
                             if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
                                 getCSPDetails(cspCode);
-                                SharedPreferences mSharedPref = getSharedPreferences("VE_VISIT_INFRA", MODE_PRIVATE);
-                                SharedPreferences.Editor editor = mSharedPref.edit();
-                                editor.clear().apply();
+
+
+
+                               /* SharedPreferences mSharedPref1 = getSharedPreferences("VE_VISIT_INFRA", MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = mSharedPref1.edit();
+                                editor1.clear().apply();
+
+                                SharedPreferences mSharedPref2 = getSharedPreferences("VE_VISIT_DOCUMENTATION", MODE_PRIVATE);
+                                SharedPreferences.Editor editor2 = mSharedPref2.edit();
+                                editor2.clear().apply();
+
+                                SharedPreferences mSharedPref3 = getSharedPreferences("VE_VISIT_ZERO", MODE_PRIVATE);
+                                SharedPreferences.Editor editor3 = mSharedPref3.edit();
+                                editor3.clear().apply();
+
+                                SharedPreferences mSharedPref4 = getSharedPreferences("VE_VISIT_CERTIFICATION", MODE_PRIVATE);
+                                SharedPreferences.Editor editor4 = mSharedPref4.edit();
+                                editor4.clear().apply();
+
+                                SharedPreferences mSharedPref5 = getSharedPreferences("VE_VISIT_ACTIVITIES", MODE_PRIVATE);
+                                SharedPreferences.Editor editor5 = mSharedPref5.edit();
+                                editor5.clear().apply();*/
+
                                 binding.etSpinner.setText(cspCode);
                             } else {
 

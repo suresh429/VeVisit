@@ -101,5 +101,6 @@
     <string name="question513">Did you met Gram Mukhiya?: *</string>
     <string name="question514">Did you met Branch Head?: *</string>
     <string name="comments">Comments</string>
+    <string name="capture_image">Capture Image</string>
 
 </resources>

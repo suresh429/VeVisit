@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.vcspinfo.vevist">
+    package="com.vcspinfo.vevist"
+    android:installLocation="auto">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <queries>
+        <!-- Browser -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="http" />
+        </intent>
+
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
 
     <application
         android:allowBackup="true"
@@ -12,19 +42,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".activities.ActivitiesActivity"></activity>
-        <activity android:name=".activities.CertificationActivity" />
-        <activity android:name=".activities.ZeroToleranceActivity" />
-        <activity android:name=".activities.DocumentationActivity" />
-        <activity android:name=".activities.InfraActivity" />
-        <activity android:name=".activities.CSPDetailsActivity" />
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        android:fullBackupContent="true">
+        <activity android:name=".activities.ActivitiesActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".activities.CertificationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.ZeroToleranceActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.DocumentationActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.InfraActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activities.CSPDetailsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activities.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.SplashActivity"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,6 +75,31 @@
         <activity
             android:name=".activities.DashboardActivity"
             android:screenOrientation="portrait" />
+
+       <!-- <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>-->
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.vcspinfo.vevist.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_provider_paths" />
+        </provider>
+
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
     </application>
 
 </manifest>
