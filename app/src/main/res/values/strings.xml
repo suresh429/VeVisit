@@ -51,11 +51,13 @@
     <string name="question218">DDR+CSP Application: *</string>
     <string name="question219">2 Referee KYC: *</string>
     <string name="question220">CSP Sworn Affidavit Notrised Stamp 100/-: *</string>
+    <string name="question226">CIBIL report Xerox copy with duly signed available.: *</string>
     <string name="question221">BCP Testing Documents: *</string>
     <string name="question222">CSP ID Card: *</string>
     <string name="question223">CSP ID Wearing: *</string>
     <string name="question224">SUB KO Documents: *</string>
     <string name="question225">All Documents in Folder: *</string>
+
 
 
     <string name="question301">CSP situated at allotted Location?: *</string>

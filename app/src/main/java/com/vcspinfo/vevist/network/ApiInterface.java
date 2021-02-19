@@ -96,6 +96,7 @@ public interface ApiInterface {
             @Part("visit[option_csp_id_wear]" ) RequestBody question223,
             @Part("visit[option_subko_documents]" ) RequestBody question224,
             @Part("visit[option_single_folder]" ) RequestBody question225,
+            @Part("visit[option_cibil]" ) RequestBody question226,
 
             @Part("visit[option_csp_location]" ) RequestBody question301,
             @Part("visit[option_customer_receipt]" ) RequestBody question302,

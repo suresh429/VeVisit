@@ -113,6 +113,7 @@ public class ActivitiesActivity extends AppCompatActivity {
     String question_223;
     String question_224;
     String question_225;
+    String question_226;
     String question_301;
     String question_302;
     String question_303;
@@ -225,6 +226,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         question_223 = userSessionManager.getDocumentation().get("question_223");
         question_224 = userSessionManager.getDocumentation().get("question_224");
         question_225 = userSessionManager.getDocumentation().get("question_225");
+        question_226 = userSessionManager.getDocumentation().get("question_226");
 
         question_301 = userSessionManager.getZeroTolerance().get("question_301");
         question_302 = userSessionManager.getZeroTolerance().get("question_302");
@@ -642,6 +644,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         RequestBody question_223_body = RequestBody.create(question_223, MediaType.parse("text/plain"));
         RequestBody question_224_body = RequestBody.create(question_224, MediaType.parse("text/plain"));
         RequestBody question_225_body = RequestBody.create(question_225, MediaType.parse("text/plain"));
+        RequestBody question_226_body = RequestBody.create(question_226, MediaType.parse("text/plain"));
 
         RequestBody question_301_body = RequestBody.create(question_301, MediaType.parse("text/plain"));
         RequestBody question_302_body = RequestBody.create(question_302, MediaType.parse("text/plain"));
@@ -738,6 +741,7 @@ public class ActivitiesActivity extends AppCompatActivity {
                 question_223_body,
                 question_224_body,
                 question_225_body,
+                question_226_body,
                 question_301_body,
                 question_302_body,
                 question_303_body,

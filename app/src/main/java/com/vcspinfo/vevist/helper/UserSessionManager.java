@@ -81,6 +81,7 @@ public class UserSessionManager {
     public static final String QUESTION_223 = "question_223";
     public static final String QUESTION_224 = "question_224";
     public static final String QUESTION_225 = "question_225";
+    public static final String QUESTION_226 = "question_226";
 
     public static final String QUESTION_301 = "question_301";
     public static final String QUESTION_302 = "question_302";
@@ -228,7 +229,8 @@ public class UserSessionManager {
             String question_222,
             String question_223,
             String question_224,
-            String question_225
+            String question_225,
+            String question_226
 
 
     ) {
@@ -259,6 +261,7 @@ public class UserSessionManager {
         editor.putString(QUESTION_223, question_223);
         editor.putString(QUESTION_224, question_224);
         editor.putString(QUESTION_225, question_225);
+        editor.putString(QUESTION_226, question_226);
 
 
         editor.commit();
@@ -454,6 +457,7 @@ public class UserSessionManager {
         profile.put("question_223", pref.getString(QUESTION_223, null));
         profile.put("question_224", pref.getString(QUESTION_224, null));
         profile.put("question_225", pref.getString(QUESTION_225, null));
+        profile.put("question_226", pref.getString(QUESTION_226, null));
 
 
         return profile;

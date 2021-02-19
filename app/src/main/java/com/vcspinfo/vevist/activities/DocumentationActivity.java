@@ -20,7 +20,8 @@ import com.vcspinfo.vevist.helper.UserSessionManager;
 import java.util.Objects;
 
 public class DocumentationActivity extends AppCompatActivity {
-  ActivityDocumentationBinding binding;
+
+    ActivityDocumentationBinding binding;
     UserSessionManager userSessionManager;
     SharedPreferences mSharedPref;
     String cspCode;
@@ -50,6 +51,7 @@ public class DocumentationActivity extends AppCompatActivity {
     String question_123;
     String question_124;
     String question_125;
+    String question_126;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,7 @@ public class DocumentationActivity extends AppCompatActivity {
         getData();
         binding.btnNext.setOnClickListener(v -> {
 
+         
             if (binding.radioGroupQuestion1.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion2.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion3.getCheckedRadioButtonId() != -1 &&
@@ -87,6 +90,7 @@ public class DocumentationActivity extends AppCompatActivity {
                     binding.radioGroupQuestion18.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion19.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion20.getCheckedRadioButtonId() != -1 &&
+                    binding.radioGroupQuestion26.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion21.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion22.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion23.getCheckedRadioButtonId() != -1 &&
@@ -118,7 +122,8 @@ public class DocumentationActivity extends AppCompatActivity {
                         question_122,
                         question_123,
                         question_124,
-                        question_125
+                        question_125,
+                        question_126
 
                 );
                 Intent intent = new Intent(DocumentationActivity.this, ZeroToleranceActivity.class);
@@ -368,6 +373,15 @@ public class DocumentationActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
+        binding.radioGroupQuestion26.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = (RadioButton) findViewById(checkedId);
+                question_126 = radioButton.getText().toString();
+                editor.putInt("rg26", binding.radioGroupQuestion26.indexOfChild(findViewById(binding.radioGroupQuestion26.getCheckedRadioButtonId())));
+                editor.apply();
+            }
+        });
 
 
 
@@ -474,6 +488,10 @@ public class DocumentationActivity extends AppCompatActivity {
         int i25 = mSharedPref.getInt("rg25", -1);
         if (i25 >= 0) {
             ((RadioButton) binding.radioGroupQuestion25.getChildAt(i25)).setChecked(true);
+        }
+        int i26 = mSharedPref.getInt("rg26", -1);
+        if (i26 >= 0) {
+            ((RadioButton) binding.radioGroupQuestion26.getChildAt(i26)).setChecked(true);
         }
 
     }
