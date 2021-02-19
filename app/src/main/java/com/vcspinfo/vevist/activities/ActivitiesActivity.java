@@ -32,7 +32,6 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.vcspinfo.vevist.BuildConfig;
 import com.vcspinfo.vevist.R;
 import com.vcspinfo.vevist.databinding.ActivityActivitiesBinding;
 import com.vcspinfo.vevist.helper.FileCompressor;
@@ -67,7 +66,7 @@ public class ActivitiesActivity extends AppCompatActivity {
 
     SharedPreferences mSharedPref;
     SharedPreferences.Editor editor;
-    String csp_code;
+    String csp_code, token, latitude, longitude;
     String question_101;
     String question_102;
     String question_103;
@@ -175,82 +174,83 @@ public class ActivitiesActivity extends AppCompatActivity {
         mCompressor = new FileCompressor(this);
 
 
-         csp_code=userSessionManager.getInfra().get("csp_code");
-         question_101=userSessionManager.getInfra().get("question_101");
-         question_102=userSessionManager.getInfra().get("question_102");
-         question_103=userSessionManager.getInfra().get("question_103");
-         question_104=userSessionManager.getInfra().get("question_104");
-         question_105=userSessionManager.getInfra().get("question_105");
-         question_106=userSessionManager.getInfra().get("question_106");
-         question_107=userSessionManager.getInfra().get("question_107");
-         question_108=userSessionManager.getInfra().get("question_108");
-         question_109=userSessionManager.getInfra().get("question_109");
-         question_110=userSessionManager.getInfra().get("question_110");
-         question_111=userSessionManager.getInfra().get("question_111");
-         question_112=userSessionManager.getInfra().get("question_112");
-         question_113=userSessionManager.getInfra().get("question_113");
-         question_114=userSessionManager.getInfra().get("question_114");
-         question_115=userSessionManager.getInfra().get("question_115");
-         question_116=userSessionManager.getInfra().get("question_116");
-         question_117=userSessionManager.getInfra().get("question_117");
-         question_118=userSessionManager.getInfra().get("question_118");
-         question_119=userSessionManager.getInfra().get("question_119");
-         question_120=userSessionManager.getInfra().get("question_120");
-         question_121=userSessionManager.getInfra().get("question_121");
+        csp_code = userSessionManager.getInfra().get("csp_code");
+        token = userSessionManager.getUserDetails().get("token");
+        latitude = userSessionManager.getLocation().get("latitude");
+        longitude = userSessionManager.getLocation().get("longitude");
+        question_101 = userSessionManager.getInfra().get("question_101");
+        question_102 = userSessionManager.getInfra().get("question_102");
+        question_103 = userSessionManager.getInfra().get("question_103");
+        question_104 = userSessionManager.getInfra().get("question_104");
+        question_105 = userSessionManager.getInfra().get("question_105");
+        question_106 = userSessionManager.getInfra().get("question_106");
+        question_107 = userSessionManager.getInfra().get("question_107");
+        question_108 = userSessionManager.getInfra().get("question_108");
+        question_109 = userSessionManager.getInfra().get("question_109");
+        question_110 = userSessionManager.getInfra().get("question_110");
+        question_111 = userSessionManager.getInfra().get("question_111");
+        question_112 = userSessionManager.getInfra().get("question_112");
+        question_113 = userSessionManager.getInfra().get("question_113");
+        question_114 = userSessionManager.getInfra().get("question_114");
+        question_115 = userSessionManager.getInfra().get("question_115");
+        question_116 = userSessionManager.getInfra().get("question_116");
+        question_117 = userSessionManager.getInfra().get("question_117");
+        question_118 = userSessionManager.getInfra().get("question_118");
+        question_119 = userSessionManager.getInfra().get("question_119");
+        question_120 = userSessionManager.getInfra().get("question_120");
+        question_121 = userSessionManager.getInfra().get("question_121");
 
-         question_201=userSessionManager.getDocumentation().get("question_201");
-         question_202=userSessionManager.getDocumentation().get("question_202");
-         question_203=userSessionManager.getDocumentation().get("question_203");
-         question_204=userSessionManager.getDocumentation().get("question_204");
-         question_205=userSessionManager.getDocumentation().get("question_205");
-         question_206=userSessionManager.getDocumentation().get("question_206");
-         question_207=userSessionManager.getDocumentation().get("question_207");
-         question_208=userSessionManager.getDocumentation().get("question_208");
-         question_209=userSessionManager.getDocumentation().get("question_209");
-         question_210=userSessionManager.getDocumentation().get("question_210");
-         question_211=userSessionManager.getDocumentation().get("question_211");
-         question_212=userSessionManager.getDocumentation().get("question_212");
-         question_213=userSessionManager.getDocumentation().get("question_213");
-         question_214=userSessionManager.getDocumentation().get("question_214");
-         question_215=userSessionManager.getDocumentation().get("question_215");
-         question_216=userSessionManager.getDocumentation().get("question_216");
-         question_217=userSessionManager.getDocumentation().get("question_217");
-         question_218=userSessionManager.getDocumentation().get("question_218");
-         question_219=userSessionManager.getDocumentation().get("question_219");
-         question_220=userSessionManager.getDocumentation().get("question_220");
-         question_221=userSessionManager.getDocumentation().get("question_221");
-         question_222=userSessionManager.getDocumentation().get("question_222");
-         question_223=userSessionManager.getDocumentation().get("question_223");
-         question_224=userSessionManager.getDocumentation().get("question_224");
-         question_225=userSessionManager.getDocumentation().get("question_225");
+        question_201 = userSessionManager.getDocumentation().get("question_201");
+        question_202 = userSessionManager.getDocumentation().get("question_202");
+        question_203 = userSessionManager.getDocumentation().get("question_203");
+        question_204 = userSessionManager.getDocumentation().get("question_204");
+        question_205 = userSessionManager.getDocumentation().get("question_205");
+        question_206 = userSessionManager.getDocumentation().get("question_206");
+        question_207 = userSessionManager.getDocumentation().get("question_207");
+        question_208 = userSessionManager.getDocumentation().get("question_208");
+        question_209 = userSessionManager.getDocumentation().get("question_209");
+        question_210 = userSessionManager.getDocumentation().get("question_210");
+        question_211 = userSessionManager.getDocumentation().get("question_211");
+        question_212 = userSessionManager.getDocumentation().get("question_212");
+        question_213 = userSessionManager.getDocumentation().get("question_213");
+        question_214 = userSessionManager.getDocumentation().get("question_214");
+        question_215 = userSessionManager.getDocumentation().get("question_215");
+        question_216 = userSessionManager.getDocumentation().get("question_216");
+        question_217 = userSessionManager.getDocumentation().get("question_217");
+        question_218 = userSessionManager.getDocumentation().get("question_218");
+        question_219 = userSessionManager.getDocumentation().get("question_219");
+        question_220 = userSessionManager.getDocumentation().get("question_220");
+        question_221 = userSessionManager.getDocumentation().get("question_221");
+        question_222 = userSessionManager.getDocumentation().get("question_222");
+        question_223 = userSessionManager.getDocumentation().get("question_223");
+        question_224 = userSessionManager.getDocumentation().get("question_224");
+        question_225 = userSessionManager.getDocumentation().get("question_225");
 
-         question_301=userSessionManager.getZeroTolerance().get("question_301");
-         question_302=userSessionManager.getZeroTolerance().get("question_302");
-         question_303=userSessionManager.getZeroTolerance().get("question_303");
-         question_304=userSessionManager.getZeroTolerance().get("question_304");
-         question_305=userSessionManager.getZeroTolerance().get("question_305");
-         question_306=userSessionManager.getZeroTolerance().get("question_306");
-         question_307=userSessionManager.getZeroTolerance().get("question_307");
-         question_308=userSessionManager.getZeroTolerance().get("question_308");
-         question_309=userSessionManager.getZeroTolerance().get("question_309");
-         question_310=userSessionManager.getZeroTolerance().get("question_310");
-         question_311=userSessionManager.getZeroTolerance().get("question_311");
-         question_312=userSessionManager.getZeroTolerance().get("question_312");
-         question_313=userSessionManager.getZeroTolerance().get("question_313");
-         question_314=userSessionManager.getZeroTolerance().get("question_314");
-         question_315=userSessionManager.getZeroTolerance().get("question_315");
-         question_316=userSessionManager.getZeroTolerance().get("question_316");
-         question_317=userSessionManager.getZeroTolerance().get("question_317");
-         question_318=userSessionManager.getZeroTolerance().get("question_318");
-         question_319=userSessionManager.getZeroTolerance().get("question_319");
+        question_301 = userSessionManager.getZeroTolerance().get("question_301");
+        question_302 = userSessionManager.getZeroTolerance().get("question_302");
+        question_303 = userSessionManager.getZeroTolerance().get("question_303");
+        question_304 = userSessionManager.getZeroTolerance().get("question_304");
+        question_305 = userSessionManager.getZeroTolerance().get("question_305");
+        question_306 = userSessionManager.getZeroTolerance().get("question_306");
+        question_307 = userSessionManager.getZeroTolerance().get("question_307");
+        question_308 = userSessionManager.getZeroTolerance().get("question_308");
+        question_309 = userSessionManager.getZeroTolerance().get("question_309");
+        question_310 = userSessionManager.getZeroTolerance().get("question_310");
+        question_311 = userSessionManager.getZeroTolerance().get("question_311");
+        question_312 = userSessionManager.getZeroTolerance().get("question_312");
+        question_313 = userSessionManager.getZeroTolerance().get("question_313");
+        question_314 = userSessionManager.getZeroTolerance().get("question_314");
+        question_315 = userSessionManager.getZeroTolerance().get("question_315");
+        question_316 = userSessionManager.getZeroTolerance().get("question_316");
+        question_317 = userSessionManager.getZeroTolerance().get("question_317");
+        question_318 = userSessionManager.getZeroTolerance().get("question_318");
+        question_319 = userSessionManager.getZeroTolerance().get("question_319");
 
-         question_401=userSessionManager.getCertificates().get("question_401");
-         question_402=userSessionManager.getCertificates().get("question_402");
-         question_403=userSessionManager.getCertificates().get("question_403");
-         question_404=userSessionManager.getCertificates().get("question_404");
-         question_405=userSessionManager.getCertificates().get("question_405");
-
-
+        question_401 = userSessionManager.getCertificates().get("question_401");
+        question_402 = userSessionManager.getCertificates().get("question_402");
+        question_403 = userSessionManager.getCertificates().get("question_403");
+        question_404 = userSessionManager.getCertificates().get("question_404");
+        question_405 = userSessionManager.getCertificates().get("question_405");
 
 
         setData();
@@ -318,7 +318,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                  selectImage();
+                selectImage();
 
             }
         });
@@ -446,7 +446,7 @@ public class ActivitiesActivity extends AppCompatActivity {
      * Capture image from camera
      */
 
-   /* private void dispatchTakePictureIntent() {
+  /*  private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         try {
             startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
@@ -454,7 +454,6 @@ public class ActivitiesActivity extends AppCompatActivity {
             // display error state to the user
         }
     }*/
-
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -477,27 +476,21 @@ public class ActivitiesActivity extends AppCompatActivity {
             }
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK) {
 
-            //mPhotoFile = mCompressor.compressToFile(mPhotoFile,currentPhotoPath);
-            mPhotoFile = new File(currentPhotoPath);
-            Bitmap bitmap = BitmapFactory.decodeFile(mPhotoFile.getPath());
-            Glide.with(ActivitiesActivity.this).load(bitmap).apply(new RequestOptions().centerCrop().circleCrop().placeholder(R.drawable.ic_baseline_arrow_drop_down_24)).into(binding.imageView);
+            try {
 
-            Log.d(TAG, "onActivityResult: " + mPhotoFile);
+                binding.imageView.setImageBitmap(BitmapFactory.decodeFile(currentPhotoPath));
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
 
-               /* Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
-                //imageView.setImageBitmap(imageBitmap);
-*/
-
-
-
-        }else {
-            Log.d(TAG, "onActivityResult: "+"No Data");
+        } else {
+            Log.d(TAG, "onActivityResult: " + "No Data");
         }
 
     }
@@ -508,7 +501,7 @@ public class ActivitiesActivity extends AppCompatActivity {
      * On permanent denial opens settings dialog
      */
     private void requestStoragePermission() {
-        Dexter.withActivity(this).withPermissions( Manifest.permission.CAMERA,Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        Dexter.withActivity(this).withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
@@ -573,16 +566,11 @@ public class ActivitiesActivity extends AppCompatActivity {
         File mFile = File.createTempFile(mFileName, ".jpg", storageDir);
         Log.d(TAG, "createImageFile: "+mFile);
         // Save a file: path for use with ACTION_VIEW intents
-
         return mFile;
     }*/
-
-
-
-
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
@@ -596,112 +584,111 @@ public class ActivitiesActivity extends AppCompatActivity {
         return image;
     }
 
-    private void saveData(){
+    private void saveData() {
 
         binding.progressCircular.setVisibility(View.VISIBLE);
         // File file = new File("/storage/emulated/0/Download/Corrections 6.jpg");
-        RequestBody requestFile = RequestBody.create(mPhotoFile, MediaType.parse("multipart/form-data"));
-       // RequestBody requestFile = RequestBody.create(mPhotoFile, MediaType.parse("image/jpeg"));
+        RequestBody requestFile = RequestBody.create(currentPhotoPath, MediaType.parse("multipart/form-data"));
+        // RequestBody requestFile = RequestBody.create(mPhotoFile, MediaType.parse("image/jpeg"));
 
         // MultipartBody.Part is used to send also the actual file name
-        MultipartBody.Part body = MultipartBody.Part.createFormData("visit[photo]", mPhotoFile.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("visit[photo]", currentPhotoPath, requestFile);
 
-        RequestBody cspCodeBody = RequestBody.create(csp_code,MediaType.parse("text/plain"));
-        RequestBody question_101_body = RequestBody.create(question_101,MediaType.parse("text/plain"));
-        RequestBody question_102_body = RequestBody.create(question_102,MediaType.parse("text/plain"));
-        RequestBody question_103_body = RequestBody.create(question_103,MediaType.parse("text/plain"));
-        RequestBody question_104_body = RequestBody.create(question_104,MediaType.parse("text/plain"));
-        RequestBody question_105_body = RequestBody.create(question_105,MediaType.parse("text/plain"));
-        RequestBody question_106_body = RequestBody.create(question_106,MediaType.parse("text/plain"));
-        RequestBody question_107_body = RequestBody.create(question_107,MediaType.parse("text/plain"));
-        RequestBody question_108_body = RequestBody.create(question_108,MediaType.parse("text/plain"));
-        RequestBody question_109_body = RequestBody.create(question_109,MediaType.parse("text/plain"));
-        RequestBody question_110_body = RequestBody.create(question_110,MediaType.parse("text/plain"));
-        RequestBody question_111_body = RequestBody.create(question_111,MediaType.parse("text/plain"));
-        RequestBody question_112_body = RequestBody.create(question_112,MediaType.parse("text/plain"));
-        RequestBody question_113_body = RequestBody.create(question_113,MediaType.parse("text/plain"));
-        RequestBody question_114_body = RequestBody.create(question_114,MediaType.parse("text/plain"));
-        RequestBody question_115_body = RequestBody.create(question_115,MediaType.parse("text/plain"));
-        RequestBody question_116_body = RequestBody.create(question_116,MediaType.parse("text/plain"));
-        RequestBody question_117_body = RequestBody.create(question_117,MediaType.parse("text/plain"));
-        RequestBody question_118_body = RequestBody.create(question_118,MediaType.parse("text/plain"));
-        RequestBody question_119_body = RequestBody.create(question_119,MediaType.parse("text/plain"));
-        RequestBody question_120_body = RequestBody.create(question_120,MediaType.parse("text/plain"));
-        RequestBody question_121_body = RequestBody.create(question_121,MediaType.parse("text/plain"));
+        RequestBody cspCodeBody = RequestBody.create(csp_code, MediaType.parse("text/plain"));
+        RequestBody question_101_body = RequestBody.create(question_101, MediaType.parse("text/plain"));
+        RequestBody question_102_body = RequestBody.create(question_102, MediaType.parse("text/plain"));
+        RequestBody question_103_body = RequestBody.create(question_103, MediaType.parse("text/plain"));
+        RequestBody question_104_body = RequestBody.create(question_104, MediaType.parse("text/plain"));
+        RequestBody question_105_body = RequestBody.create(question_105, MediaType.parse("text/plain"));
+        RequestBody question_106_body = RequestBody.create(question_106, MediaType.parse("text/plain"));
+        RequestBody question_107_body = RequestBody.create(question_107, MediaType.parse("text/plain"));
+        RequestBody question_108_body = RequestBody.create(question_108, MediaType.parse("text/plain"));
+        RequestBody question_109_body = RequestBody.create(question_109, MediaType.parse("text/plain"));
+        RequestBody question_110_body = RequestBody.create(question_110, MediaType.parse("text/plain"));
+        RequestBody question_111_body = RequestBody.create(question_111, MediaType.parse("text/plain"));
+        RequestBody question_112_body = RequestBody.create(question_112, MediaType.parse("text/plain"));
+        RequestBody question_113_body = RequestBody.create(question_113, MediaType.parse("text/plain"));
+        RequestBody question_114_body = RequestBody.create(question_114, MediaType.parse("text/plain"));
+        RequestBody question_115_body = RequestBody.create(question_115, MediaType.parse("text/plain"));
+        RequestBody question_116_body = RequestBody.create(question_116, MediaType.parse("text/plain"));
+        RequestBody question_117_body = RequestBody.create(question_117, MediaType.parse("text/plain"));
+        RequestBody question_118_body = RequestBody.create(question_118, MediaType.parse("text/plain"));
+        RequestBody question_119_body = RequestBody.create(question_119, MediaType.parse("text/plain"));
+        RequestBody question_120_body = RequestBody.create(question_120, MediaType.parse("text/plain"));
+        RequestBody question_121_body = RequestBody.create(question_121, MediaType.parse("text/plain"));
 
-        RequestBody question_201_body = RequestBody.create(question_201,MediaType.parse("text/plain"));
-        RequestBody question_202_body = RequestBody.create(question_202,MediaType.parse("text/plain"));
-        RequestBody question_203_body = RequestBody.create(question_203,MediaType.parse("text/plain"));
-        RequestBody question_204_body = RequestBody.create(question_204,MediaType.parse("text/plain"));
-        RequestBody question_205_body = RequestBody.create(question_205,MediaType.parse("text/plain"));
-        RequestBody question_206_body = RequestBody.create(question_206,MediaType.parse("text/plain"));
-        RequestBody question_207_body = RequestBody.create(question_207,MediaType.parse("text/plain"));
-        RequestBody question_208_body = RequestBody.create(question_208,MediaType.parse("text/plain"));
-        RequestBody question_209_body = RequestBody.create(question_209,MediaType.parse("text/plain"));
-        RequestBody question_210_body = RequestBody.create(question_210,MediaType.parse("text/plain"));
-        RequestBody question_211_body = RequestBody.create(question_211,MediaType.parse("text/plain"));
-        RequestBody question_212_body = RequestBody.create(question_212,MediaType.parse("text/plain"));
-        RequestBody question_213_body = RequestBody.create(question_213,MediaType.parse("text/plain"));
-        RequestBody question_214_body = RequestBody.create(question_214,MediaType.parse("text/plain"));
-        RequestBody question_215_body = RequestBody.create(question_215,MediaType.parse("text/plain"));
-        RequestBody question_216_body = RequestBody.create(question_216,MediaType.parse("text/plain"));
-        RequestBody question_217_body = RequestBody.create(question_217,MediaType.parse("text/plain"));
-        RequestBody question_218_body = RequestBody.create(question_218,MediaType.parse("text/plain"));
-        RequestBody question_219_body = RequestBody.create(question_219,MediaType.parse("text/plain"));
-        RequestBody question_220_body = RequestBody.create(question_220,MediaType.parse("text/plain"));
-        RequestBody question_221_body = RequestBody.create(question_221,MediaType.parse("text/plain"));
-        RequestBody question_222_body = RequestBody.create(question_222,MediaType.parse("text/plain"));
-        RequestBody question_223_body = RequestBody.create(question_223,MediaType.parse("text/plain"));
-        RequestBody question_224_body = RequestBody.create(question_224,MediaType.parse("text/plain"));
-        RequestBody question_225_body = RequestBody.create(question_225,MediaType.parse("text/plain"));
+        RequestBody question_201_body = RequestBody.create(question_201, MediaType.parse("text/plain"));
+        RequestBody question_202_body = RequestBody.create(question_202, MediaType.parse("text/plain"));
+        RequestBody question_203_body = RequestBody.create(question_203, MediaType.parse("text/plain"));
+        RequestBody question_204_body = RequestBody.create(question_204, MediaType.parse("text/plain"));
+        RequestBody question_205_body = RequestBody.create(question_205, MediaType.parse("text/plain"));
+        RequestBody question_206_body = RequestBody.create(question_206, MediaType.parse("text/plain"));
+        RequestBody question_207_body = RequestBody.create(question_207, MediaType.parse("text/plain"));
+        RequestBody question_208_body = RequestBody.create(question_208, MediaType.parse("text/plain"));
+        RequestBody question_209_body = RequestBody.create(question_209, MediaType.parse("text/plain"));
+        RequestBody question_210_body = RequestBody.create(question_210, MediaType.parse("text/plain"));
+        RequestBody question_211_body = RequestBody.create(question_211, MediaType.parse("text/plain"));
+        RequestBody question_212_body = RequestBody.create(question_212, MediaType.parse("text/plain"));
+        RequestBody question_213_body = RequestBody.create(question_213, MediaType.parse("text/plain"));
+        RequestBody question_214_body = RequestBody.create(question_214, MediaType.parse("text/plain"));
+        RequestBody question_215_body = RequestBody.create(question_215, MediaType.parse("text/plain"));
+        RequestBody question_216_body = RequestBody.create(question_216, MediaType.parse("text/plain"));
+        RequestBody question_217_body = RequestBody.create(question_217, MediaType.parse("text/plain"));
+        RequestBody question_218_body = RequestBody.create(question_218, MediaType.parse("text/plain"));
+        RequestBody question_219_body = RequestBody.create(question_219, MediaType.parse("text/plain"));
+        RequestBody question_220_body = RequestBody.create(question_220, MediaType.parse("text/plain"));
+        RequestBody question_221_body = RequestBody.create(question_221, MediaType.parse("text/plain"));
+        RequestBody question_222_body = RequestBody.create(question_222, MediaType.parse("text/plain"));
+        RequestBody question_223_body = RequestBody.create(question_223, MediaType.parse("text/plain"));
+        RequestBody question_224_body = RequestBody.create(question_224, MediaType.parse("text/plain"));
+        RequestBody question_225_body = RequestBody.create(question_225, MediaType.parse("text/plain"));
 
-        RequestBody question_301_body = RequestBody.create(question_301,MediaType.parse("text/plain"));
-        RequestBody question_302_body = RequestBody.create(question_302,MediaType.parse("text/plain"));
-        RequestBody question_303_body = RequestBody.create(question_303,MediaType.parse("text/plain"));
-        RequestBody question_304_body = RequestBody.create(question_304,MediaType.parse("text/plain"));
-        RequestBody question_305_body = RequestBody.create(question_305,MediaType.parse("text/plain"));
-        RequestBody question_306_body = RequestBody.create(question_306,MediaType.parse("text/plain"));
-        RequestBody question_307_body = RequestBody.create(question_307,MediaType.parse("text/plain"));
-        RequestBody question_308_body = RequestBody.create(question_308,MediaType.parse("text/plain"));
-        RequestBody question_309_body = RequestBody.create(question_309,MediaType.parse("text/plain"));
-        RequestBody question_310_body = RequestBody.create(question_310,MediaType.parse("text/plain"));
-        RequestBody question_311_body = RequestBody.create(question_311,MediaType.parse("text/plain"));
-        RequestBody question_312_body = RequestBody.create(question_312,MediaType.parse("text/plain"));
-        RequestBody question_313_body = RequestBody.create(question_313,MediaType.parse("text/plain"));
-        RequestBody question_314_body = RequestBody.create(question_314,MediaType.parse("text/plain"));
-        RequestBody question_315_body = RequestBody.create(question_315,MediaType.parse("text/plain"));
-        RequestBody question_316_body = RequestBody.create(question_316,MediaType.parse("text/plain"));
-        RequestBody question_317_body = RequestBody.create(question_317,MediaType.parse("text/plain"));
-        RequestBody question_318_body = RequestBody.create(question_318,MediaType.parse("text/plain"));
-        RequestBody question_319_body = RequestBody.create(question_319,MediaType.parse("text/plain"));
+        RequestBody question_301_body = RequestBody.create(question_301, MediaType.parse("text/plain"));
+        RequestBody question_302_body = RequestBody.create(question_302, MediaType.parse("text/plain"));
+        RequestBody question_303_body = RequestBody.create(question_303, MediaType.parse("text/plain"));
+        RequestBody question_304_body = RequestBody.create(question_304, MediaType.parse("text/plain"));
+        RequestBody question_305_body = RequestBody.create(question_305, MediaType.parse("text/plain"));
+        RequestBody question_306_body = RequestBody.create(question_306, MediaType.parse("text/plain"));
+        RequestBody question_307_body = RequestBody.create(question_307, MediaType.parse("text/plain"));
+        RequestBody question_308_body = RequestBody.create(question_308, MediaType.parse("text/plain"));
+        RequestBody question_309_body = RequestBody.create(question_309, MediaType.parse("text/plain"));
+        RequestBody question_310_body = RequestBody.create(question_310, MediaType.parse("text/plain"));
+        RequestBody question_311_body = RequestBody.create(question_311, MediaType.parse("text/plain"));
+        RequestBody question_312_body = RequestBody.create(question_312, MediaType.parse("text/plain"));
+        RequestBody question_313_body = RequestBody.create(question_313, MediaType.parse("text/plain"));
+        RequestBody question_314_body = RequestBody.create(question_314, MediaType.parse("text/plain"));
+        RequestBody question_315_body = RequestBody.create(question_315, MediaType.parse("text/plain"));
+        RequestBody question_316_body = RequestBody.create(question_316, MediaType.parse("text/plain"));
+        RequestBody question_317_body = RequestBody.create(question_317, MediaType.parse("text/plain"));
+        RequestBody question_318_body = RequestBody.create(question_318, MediaType.parse("text/plain"));
+        RequestBody question_319_body = RequestBody.create(question_319, MediaType.parse("text/plain"));
 
-        RequestBody question_401_body = RequestBody.create(question_401,MediaType.parse("text/plain"));
-        RequestBody question_402_body = RequestBody.create(question_402,MediaType.parse("text/plain"));
-        RequestBody question_403_body = RequestBody.create(question_403,MediaType.parse("text/plain"));
-        RequestBody question_404_body = RequestBody.create(question_404,MediaType.parse("text/plain"));
-        RequestBody question_405_body = RequestBody.create(question_405,MediaType.parse("text/plain"));
+        RequestBody question_401_body = RequestBody.create(question_401, MediaType.parse("text/plain"));
+        RequestBody question_402_body = RequestBody.create(question_402, MediaType.parse("text/plain"));
+        RequestBody question_403_body = RequestBody.create(question_403, MediaType.parse("text/plain"));
+        RequestBody question_404_body = RequestBody.create(question_404, MediaType.parse("text/plain"));
+        RequestBody question_405_body = RequestBody.create(question_405, MediaType.parse("text/plain"));
 
-        RequestBody question_501_body = RequestBody.create(question_501,MediaType.parse("text/plain"));
-        RequestBody question_502_body = RequestBody.create(question_502,MediaType.parse("text/plain"));
-        RequestBody question_503_body = RequestBody.create(question_503,MediaType.parse("text/plain"));
-        RequestBody question_504_body = RequestBody.create(question_504,MediaType.parse("text/plain"));
-        RequestBody question_505_body = RequestBody.create(question_505,MediaType.parse("text/plain"));
-        RequestBody question_506_body = RequestBody.create(question_506,MediaType.parse("text/plain"));
-        RequestBody question_507_body = RequestBody.create(question_507,MediaType.parse("text/plain"));
-        RequestBody question_508_body = RequestBody.create(question_508,MediaType.parse("text/plain"));
-        RequestBody question_509_body = RequestBody.create(question_509,MediaType.parse("text/plain"));
-        RequestBody question_510_body = RequestBody.create(question_510,MediaType.parse("text/plain"));
-        RequestBody question_511_body = RequestBody.create(question_511,MediaType.parse("text/plain"));
-        RequestBody question_512_body = RequestBody.create(question_512,MediaType.parse("text/plain"));
-        RequestBody question_513_body = RequestBody.create(question_513,MediaType.parse("text/plain"));
-        RequestBody comments_head_body = RequestBody.create(comments_head,MediaType.parse("text/plain"));
-        RequestBody question_514_body = RequestBody.create(question_514,MediaType.parse("text/plain"));
-        RequestBody comments_branch_body = RequestBody.create(comments_branch,MediaType.parse("text/plain"));
+        RequestBody question_501_body = RequestBody.create(question_501, MediaType.parse("text/plain"));
+        RequestBody question_502_body = RequestBody.create(question_502, MediaType.parse("text/plain"));
+        RequestBody question_503_body = RequestBody.create(question_503, MediaType.parse("text/plain"));
+        RequestBody question_504_body = RequestBody.create(question_504, MediaType.parse("text/plain"));
+        RequestBody question_505_body = RequestBody.create(question_505, MediaType.parse("text/plain"));
+        RequestBody question_506_body = RequestBody.create(question_506, MediaType.parse("text/plain"));
+        RequestBody question_507_body = RequestBody.create(question_507, MediaType.parse("text/plain"));
+        RequestBody question_508_body = RequestBody.create(question_508, MediaType.parse("text/plain"));
+        RequestBody question_509_body = RequestBody.create(question_509, MediaType.parse("text/plain"));
+        RequestBody question_510_body = RequestBody.create(question_510, MediaType.parse("text/plain"));
+        RequestBody question_511_body = RequestBody.create(question_511, MediaType.parse("text/plain"));
+        RequestBody question_512_body = RequestBody.create(question_512, MediaType.parse("text/plain"));
+        RequestBody question_513_body = RequestBody.create(question_513, MediaType.parse("text/plain"));
+        RequestBody comments_head_body = RequestBody.create(comments_head, MediaType.parse("text/plain"));
+        RequestBody question_514_body = RequestBody.create(question_514, MediaType.parse("text/plain"));
+        RequestBody comments_branch_body = RequestBody.create(comments_branch, MediaType.parse("text/plain"));
 
-        RequestBody latitudeBody= RequestBody.create("",MediaType.parse("text/plain"));
-        RequestBody longitudeBody = RequestBody.create("",MediaType.parse("text/plain"));
-        RequestBody tokenBody = RequestBody.create(userSessionManager.getUserDetails().get("token"),MediaType.parse("text/plain"));
-
+        RequestBody latitudeBody = RequestBody.create(latitude, MediaType.parse("text/plain"));
+        RequestBody longitudeBody = RequestBody.create(longitude, MediaType.parse("text/plain"));
+        RequestBody tokenBody = RequestBody.create(token, MediaType.parse("text/plain"));
 
 
         Call<CreateVisitResponse> call = RetrofitService.createService(ApiInterface.class, this).creteVisit(cspCodeBody,
@@ -791,7 +778,7 @@ public class ActivitiesActivity extends AppCompatActivity {
                 comments_head_body,
                 question_514_body,
                 comments_branch_body,
-                body,latitudeBody,longitudeBody,tokenBody);
+                body, latitudeBody, longitudeBody, tokenBody);
         call.enqueue(new Callback<CreateVisitResponse>() {
             @Override
             public void onResponse(@NonNull Call<CreateVisitResponse> call, @NonNull Response<CreateVisitResponse> response) {
@@ -800,7 +787,7 @@ public class ActivitiesActivity extends AppCompatActivity {
 
                     binding.progressCircular.setVisibility(View.GONE);
                     assert response.body() != null;
-                    Toast.makeText(ActivitiesActivity.this, ""+response.body().getSuccess(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivitiesActivity.this, "" + response.body().getSuccess(), Toast.LENGTH_SHORT).show();
 
                     SharedPreferences mSharedPref1 = getSharedPreferences("VE_VISIT_INFRA", MODE_PRIVATE);
                     SharedPreferences.Editor editor1 = mSharedPref1.edit();
@@ -820,13 +807,13 @@ public class ActivitiesActivity extends AppCompatActivity {
 
                     editor.clear().apply();
 
-                    Intent intent=new Intent(ActivitiesActivity.this,DashboardActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Intent intent = new Intent(ActivitiesActivity.this, DashboardActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
 
 
-                }else if (response.errorBody() != null) {
+                } else if (response.errorBody() != null) {
                     binding.progressCircular.setVisibility(View.GONE);
                     ApiError errorResponse = new Gson().fromJson(response.errorBody().charStream(), ApiError.class);
                     Toast.makeText(ActivitiesActivity.this, errorResponse.getError(), Toast.LENGTH_SHORT).show();
@@ -837,7 +824,7 @@ public class ActivitiesActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<CreateVisitResponse> call, @NonNull Throwable t) {
                 binding.progressCircular.setVisibility(View.GONE);
                 // Log.d("TAG", "onFailure: " + t.getMessage());
-                if (t instanceof NoConnectivityException){
+                if (t instanceof NoConnectivityException) {
                     Toast.makeText(ActivitiesActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 

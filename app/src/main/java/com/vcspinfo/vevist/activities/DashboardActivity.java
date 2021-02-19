@@ -2,15 +2,31 @@ package com.vcspinfo.vevist.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Geocoder;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
+import com.vcspinfo.vevist.BuildConfig;
 import com.vcspinfo.vevist.R;
 
 import com.vcspinfo.vevist.adapter.DashBoardListAdapter;
@@ -24,6 +40,7 @@ import com.vcspinfo.vevist.network.RetrofitService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,6 +48,7 @@ import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    private static final String TAG = "DashboardActivity";
     ActivityDashboardBinding binding;
     UserSessionManager userSessionManager;
     private List<DashBoardModel> dashBoardModelList;
@@ -40,10 +58,13 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        getSupportActionBar().setTitle("DashBoard");
+
         userSessionManager = new UserSessionManager(this);
 
         dashBoardModelList = new ArrayList<>();
         networkCall();
+
     }
 
     private void networkCall() {
@@ -119,6 +140,15 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent1);
 
                 return true;
+
+            case R.id.reports:
+
+                Intent intent2 = new Intent(DashboardActivity.this, ReportsActivity.class);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent2);
+
+                return true;
+
             case R.id.logout:
 
                 userSessionManager.clearSession();
@@ -132,4 +162,6 @@ public class DashboardActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
 }

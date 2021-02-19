@@ -30,6 +30,8 @@ public class UserSessionManager {
     public static final String KEY_STATE = "state";
     public static final String KEY_ROLE = "role";
     public static final String KEY_TOKEN = "authentication_token";
+    public static final String KEY_LAT = "latitude";
+    public static final String KEY_LON = "longitude";
 
     public static final String CSP_CODE = "csp_code";
     public static final String QUESTION_101 = "question_101";
@@ -143,6 +145,12 @@ public class UserSessionManager {
         editor.commit();
     }
 
+    public void createLocation(String longitude,String latitude){
+        editor.putString(KEY_LON, longitude);
+        editor.putString(KEY_LAT, latitude);
+        editor.commit();
+
+    }
     public void createInfra(String csp_code, String question_101,
                             String question_102,
                             String question_103,
@@ -517,5 +525,16 @@ public class UserSessionManager {
         return profile;
     }
 
+
+    public HashMap<String, String> getLocation() {
+        HashMap<String, String> profile = new HashMap<>();
+
+        profile.put("longitude", pref.getString(KEY_LON, null));
+        profile.put("latitude", pref.getString(KEY_LAT, null));
+
+
+
+        return profile;
+    }
 
 }

@@ -5,6 +5,7 @@ import com.vcspinfo.vevist.models.CSPDetailsListResponse;
 import com.vcspinfo.vevist.models.CreateVisitResponse;
 import com.vcspinfo.vevist.models.DashboardResponse;
 import com.vcspinfo.vevist.models.LoginResonse;
+import com.vcspinfo.vevist.models.VisitReportModel;
 
 import java.util.List;
 
@@ -40,6 +41,9 @@ public interface ApiInterface {
     @GET("CSPDetails/{csp_code}")
     Call<CSPDetailsResponse> getCspDetails(@Path("csp_code") String csp_code);
 
+    @Headers("Content-Type: application/json")
+    @GET("VisitReports/{token}")
+    Call<VisitReportModel> getVisitReports(@Path("token") String token);
 
     @Multipart
     @POST("CreateVisit")
