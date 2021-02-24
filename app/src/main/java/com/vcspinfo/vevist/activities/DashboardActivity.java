@@ -58,7 +58,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityDashboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        getSupportActionBar().setTitle("DashBoard");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("DashBoard");
 
         userSessionManager = new UserSessionManager(this);
 
@@ -71,6 +71,7 @@ public class DashboardActivity extends AppCompatActivity {
         binding.progressCircular.setVisibility(View.VISIBLE);
         Call<DashboardResponse> call = RetrofitService.createService(ApiInterface.class, this).getDashboard(userSessionManager.getUserDetails().get("token"));
         call.enqueue(new Callback<DashboardResponse>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(@NonNull Call<DashboardResponse> call, @NonNull Response<DashboardResponse> response) {
 
@@ -83,16 +84,19 @@ public class DashboardActivity extends AppCompatActivity {
 
                         dashBoardModelList.clear();
 
-                        dashBoardModelList.add(new DashBoardModel("YOU'RE LOGGED IN AS", baseResponse.getDashboard().getUsername(), R.drawable.ic_user,R.color.blue));
-                        dashBoardModelList.add(new DashBoardModel("TODAY VISITS", String.valueOf(baseResponse.getDashboard().getToday()), R.drawable.ic_car,R.color.orange));
-                        dashBoardModelList.add(new DashBoardModel("MONTH VISITS", String.valueOf(baseResponse.getDashboard().getMonth()), R.drawable.ic_car,R.color.green));
-                        dashBoardModelList.add(new DashBoardModel("TOTAL VISITS", String.valueOf(baseResponse.getDashboard().getTotal()), R.drawable.ic_bus,R.color.red));
-                        dashBoardModelList.add(new DashBoardModel("TOTAL 1A90 CSPs", String.valueOf(baseResponse.getDashboard().getCsp1a()), R.drawable.ic_group,R.color.blue));
-                        dashBoardModelList.add(new DashBoardModel("TOTAL 3A43 CSPs", String.valueOf(baseResponse.getDashboard().getCsp3a()), R.drawable.ic_group,R.color.red));
-                        dashBoardModelList.add(new DashBoardModel("TOTAL 1998 CSPs", String.valueOf(baseResponse.getDashboard().getCsp1998()), R.drawable.ic_group,R.color.orange));
-                        dashBoardModelList.add(new DashBoardModel("TOTAL PGB CSPs", String.valueOf(baseResponse.getDashboard().getCspPgb()), R.drawable.ic_group,R.color.green));
+                       // dashBoardModelList.add(new DashBoardModel("You're Logged in as", baseResponse.getDashboard().getUsername(), R.drawable.ic_user,R.color.blue));
+                       // dashBoardModelList.add(new DashBoardModel("Today's Visit", String.valueOf(baseResponse.getDashboard().getToday()), R.drawable.ic_car,R.color.orange));
+                        dashBoardModelList.add(new DashBoardModel("Visited in Current Month", String.valueOf(baseResponse.getDashboard().getCompletedVisits()), R.drawable.ic_car,R.color.green));
+                        dashBoardModelList.add(new DashBoardModel("Pending in Current Month" , String.valueOf(baseResponse.getDashboard().getPendingVisits()), R.drawable.ic_car,R.color.red));
+                        //dashBoardModelList.add(new DashBoardModel("TOTAL VISITS", String.valueOf(baseResponse.getDashboard().getTotal()), R.drawable.ic_bus,R.color.red));
+                        dashBoardModelList.add(new DashBoardModel("1A90 CSP", String.valueOf(baseResponse.getDashboard().getCsp1a()), R.drawable.ic_group,R.color.blue));
+                        dashBoardModelList.add(new DashBoardModel("3A43 CSP", String.valueOf(baseResponse.getDashboard().getCsp3a()), R.drawable.ic_group,R.color.red));
+                        dashBoardModelList.add(new DashBoardModel("1998 CSP", String.valueOf(baseResponse.getDashboard().getCsp1998()), R.drawable.ic_group,R.color.orange));
+                        dashBoardModelList.add(new DashBoardModel("PGB CSP", String.valueOf(baseResponse.getDashboard().getCspPgb()), R.drawable.ic_group,R.color.green));
 
 
+                        binding.txtDasBoardLogin.setText(baseResponse.getDashboard().getUsername());
+                        binding.txtDasBoardTodayCount.setText(""+baseResponse.getDashboard().getToday());
                         DashBoardListAdapter dashBoardListAdapter = new DashBoardListAdapter(dashBoardModelList, DashboardActivity.this);
                         binding.recyclerDashBoard.setAdapter(dashBoardListAdapter);
                         dashBoardListAdapter.notifyDataSetChanged();

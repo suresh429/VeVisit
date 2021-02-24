@@ -133,7 +133,7 @@ public class CSPDetailsActivity extends AppCompatActivity {
 
 
 
-                               /* SharedPreferences mSharedPref1 = getSharedPreferences("VE_VISIT_INFRA", MODE_PRIVATE);
+                                SharedPreferences mSharedPref1 = getSharedPreferences("VE_VISIT_INFRA", MODE_PRIVATE);
                                 SharedPreferences.Editor editor1 = mSharedPref1.edit();
                                 editor1.clear().apply();
 
@@ -151,7 +151,7 @@ public class CSPDetailsActivity extends AppCompatActivity {
 
                                 SharedPreferences mSharedPref5 = getSharedPreferences("VE_VISIT_ACTIVITIES", MODE_PRIVATE);
                                 SharedPreferences.Editor editor5 = mSharedPref5.edit();
-                                editor5.clear().apply();*/
+                                editor5.clear().apply();
 
                                 binding.etSpinner.setText(cspCode);
                             } else {

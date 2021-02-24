@@ -43,6 +43,10 @@ public class DashboardResponse {
         private int csp1998;
         @SerializedName("csp_pgb")
         private int cspPgb;
+        @SerializedName("completed_visits")
+        private int completedVisits;
+        @SerializedName("pending_visits")
+        private int pendingVisits;
 
         public String getUsername() {
             return username;
@@ -106,6 +110,22 @@ public class DashboardResponse {
 
         public void setCspPgb(int cspPgb) {
             this.cspPgb = cspPgb;
+        }
+
+        public int getCompletedVisits() {
+            return completedVisits;
+        }
+
+        public void setCompletedVisits(int completedVisits) {
+            this.completedVisits = completedVisits;
+        }
+
+        public int getPendingVisits() {
+            return pendingVisits;
+        }
+
+        public void setPendingVisits(int pendingVisits) {
+            this.pendingVisits = pendingVisits;
         }
     }
 }

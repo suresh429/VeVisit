@@ -3,11 +3,14 @@ package com.vcspinfo.vevist.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
+import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,6 +20,7 @@ import com.vcspinfo.vevist.databinding.ActivityDocumentationBinding;
 import com.vcspinfo.vevist.databinding.ActivityInfraBinding;
 import com.vcspinfo.vevist.helper.UserSessionManager;
 
+import java.util.Calendar;
 import java.util.Objects;
 
 public class DocumentationActivity extends AppCompatActivity {
@@ -24,7 +28,7 @@ public class DocumentationActivity extends AppCompatActivity {
     ActivityDocumentationBinding binding;
     UserSessionManager userSessionManager;
     SharedPreferences mSharedPref;
-    String cspCode;
+    String cspCode, date_agreement_211 = "0000-00-00", date_pvr_217 = "0000-00-00";
     Bundle bundle;
     String question_101;
     String question_102;
@@ -53,6 +57,8 @@ public class DocumentationActivity extends AppCompatActivity {
     String question_125;
     String question_126;
 
+    private int mYear, mMonth, mDay, mHour, mMinute;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +75,7 @@ public class DocumentationActivity extends AppCompatActivity {
         getData();
         binding.btnNext.setOnClickListener(v -> {
 
-         
+
             if (binding.radioGroupQuestion1.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion2.getCheckedRadioButtonId() != -1 &&
                     binding.radioGroupQuestion3.getCheckedRadioButtonId() != -1 &&
@@ -108,13 +114,13 @@ public class DocumentationActivity extends AppCompatActivity {
                         question_108,
                         question_109,
                         question_110,
-                        question_111,
+                        date_agreement_211,
                         question_112,
                         question_113,
                         question_114,
                         question_115,
                         question_116,
-                        question_117,
+                        date_pvr_217,
                         question_118,
                         question_119,
                         question_120,
@@ -243,6 +249,41 @@ public class DocumentationActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton = (RadioButton) findViewById(checkedId);
                 question_111 = radioButton.getText().toString();
+                if (question_111.equalsIgnoreCase("yes")) {
+                    binding.dateAgreementValidLayout.setVisibility(View.VISIBLE);
+                    binding.dateAgreementValid.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Get Current Date
+                            final Calendar c = Calendar.getInstance();
+                            mYear = c.get(Calendar.YEAR);
+                            mMonth = c.get(Calendar.MONTH);
+                            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                            DatePickerDialog datePickerDialog = new DatePickerDialog(DocumentationActivity.this,
+                                    new DatePickerDialog.OnDateSetListener() {
+
+                                        @Override
+                                        public void onDateSet(DatePicker view, int year,
+                                                              int monthOfYear, int dayOfMonth) {
+
+                                            binding.dateAgreementValid.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+
+                                        }
+                                    }, mYear, mMonth, mDay);
+                            datePickerDialog.show();
+
+                            date_agreement_211 = binding.dateAgreementValid.getText().toString();
+
+                        }
+
+                    });
+
+                } else {
+                    binding.dateAgreementValidLayout.setVisibility(View.GONE);
+                    date_agreement_211 = "0000-00-00";
+                }
                 editor.putInt("rg11", binding.radioGroupQuestion11.indexOfChild(findViewById(binding.radioGroupQuestion11.getCheckedRadioButtonId())));
                 editor.apply();
             }
@@ -297,6 +338,25 @@ public class DocumentationActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 RadioButton radioButton = (RadioButton) findViewById(checkedId);
                 question_117 = radioButton.getText().toString();
+                if (question_117.equalsIgnoreCase("yes")) {
+                    binding.datePvrValidLayout.setVisibility(View.VISIBLE);
+                    binding.datePvrValid.setOnClickListener(v -> {
+                        final Calendar c = Calendar.getInstance();
+                        mYear = c.get(Calendar.YEAR);
+                        mMonth = c.get(Calendar.MONTH);
+                        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                         DatePickerDialog datePickerDialog = new DatePickerDialog(DocumentationActivity.this,
+                                (view, year, monthOfYear, dayOfMonth) -> binding.datePvrValid.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth), mYear, mMonth, mDay);
+                        datePickerDialog.show();
+                        date_pvr_217 = binding.datePvrValid.getText().toString();
+                    });
+
+                } else {
+                    binding.datePvrValidLayout.setVisibility(View.GONE);
+                    date_pvr_217 = "0000-00-00";
+                }
                 editor.putInt("rg17", binding.radioGroupQuestion17.indexOfChild(findViewById(binding.radioGroupQuestion17.getCheckedRadioButtonId())));
                 editor.apply();
             }
@@ -382,8 +442,6 @@ public class DocumentationActivity extends AppCompatActivity {
                 editor.apply();
             }
         });
-
-
 
 
     }
