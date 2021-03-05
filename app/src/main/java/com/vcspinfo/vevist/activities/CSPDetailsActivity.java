@@ -69,16 +69,29 @@ public class CSPDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCSPDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        cspArrayList = new ArrayList<>();
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("CSP Details");
-
         userSessionManager = new UserSessionManager(this);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        cspArrayList = new ArrayList<>();
-        getCSPList();
 
+
+        if (getIntent() != null){
+            cspCode = getIntent().getStringExtra("cspCode");
+
+            if (cspCode==null){
+                getCSPList();
+            }else {
+                binding.etSpinner.setText(cspCode);
+                getCSPDetails(cspCode);
+            }
+        }
+
+
+
+
+        Log.d(TAG, "onCreate: "+cspCode);
 
         binding.etSpinner.setOnClickListener(v -> binding.spinnerCSPCode.performClick());
 
@@ -129,6 +142,7 @@ public class CSPDetailsActivity extends AppCompatActivity {
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                             cspCode = parent.getSelectedItem().toString();
                             if (!cspCode.equalsIgnoreCase("Select CSP Code")) {
+
                                 getCSPDetails(cspCode);
 
 

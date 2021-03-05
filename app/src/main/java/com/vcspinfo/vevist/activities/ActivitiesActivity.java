@@ -59,7 +59,7 @@ import retrofit2.Response;
 
 public class ActivitiesActivity extends AppCompatActivity {
     private static final String TAG = "ActivitiesActivity";
-    String currentPhotoPath;
+    String currentPhotoPath, currentPhotoPath2, currentPhotoPath3;
 
     ActivityActivitiesBinding binding;
     UserSessionManager userSessionManager;
@@ -156,6 +156,8 @@ public class ActivitiesActivity extends AppCompatActivity {
     String comments_branch;
 
     public static final int REQUEST_TAKE_PHOTO = 1;
+    public static final int REQUEST_TAKE_PHOTO2 = 2;
+    public static final int REQUEST_TAKE_PHOTO3 = 3;
 
     File mPhotoFile;
     FileCompressor mCompressor;
@@ -320,7 +322,21 @@ public class ActivitiesActivity extends AppCompatActivity {
         binding.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectImage();
+                selectImage(1);
+
+            }
+        });
+        binding.buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage(2);
+
+            }
+        });
+        binding.buttonSlip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage(3);
 
             }
         });
@@ -429,13 +445,13 @@ public class ActivitiesActivity extends AppCompatActivity {
     }
 
 
-    private void selectImage() {
+    private void selectImage(int code) {
         final CharSequence[] items = {"Take Photo",
                 "Cancel"};
         AlertDialog.Builder builder = new AlertDialog.Builder(ActivitiesActivity.this);
         builder.setItems(items, (dialog, item) -> {
             if (items[item].equals("Take Photo")) {
-                requestStoragePermission();
+                requestStoragePermission(code);
 
             } else if (items[item].equals("Cancel")) {
                 dialog.dismiss();
@@ -444,18 +460,6 @@ public class ActivitiesActivity extends AppCompatActivity {
         builder.show();
     }
 
-    /**
-     * Capture image from camera
-     */
-
-  /*  private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        try {
-            startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-        } catch (ActivityNotFoundException e) {
-            // display error state to the user
-        }
-    }*/
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         // Ensure that there's a camera activity to handle the intent
@@ -479,6 +483,52 @@ public class ActivitiesActivity extends AppCompatActivity {
         }
     }
 
+    private void dispatchTakePictureIntent2() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile2();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.vcspinfo.vevist.provider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO2);
+            }
+        }
+    }
+
+    private void dispatchTakePictureIntent3() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile3();
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.vcspinfo.vevist.provider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO3);
+            }
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -487,6 +537,30 @@ public class ActivitiesActivity extends AppCompatActivity {
             try {
 
                 binding.imageView.setImageBitmap(BitmapFactory.decodeFile(currentPhotoPath));
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        }else {
+            Log.d(TAG, "onActivityResult: " + "No Data");
+        }
+        if (requestCode == REQUEST_TAKE_PHOTO2 && resultCode == RESULT_OK) {
+
+            try {
+
+                binding.imageViewSlip.setImageBitmap(BitmapFactory.decodeFile(currentPhotoPath2));
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+        }else {
+            Log.d(TAG, "onActivityResult: " + "No Data");
+        }
+        if (requestCode == REQUEST_TAKE_PHOTO3 && resultCode == RESULT_OK) {
+
+            try {
+
+                binding.imageViewRegister.setImageBitmap(BitmapFactory.decodeFile(currentPhotoPath3));
             } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
@@ -502,14 +576,21 @@ public class ActivitiesActivity extends AppCompatActivity {
      * This uses multiple permission model from dexter
      * On permanent denial opens settings dialog
      */
-    private void requestStoragePermission() {
+    private void requestStoragePermission(int code) {
         Dexter.withActivity(this).withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .withListener(new MultiplePermissionsListener() {
                     @Override
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
                         // check if all permissions are granted
                         if (report.areAllPermissionsGranted()) {
-                            dispatchTakePictureIntent();
+                            if (code == 1) {
+                                dispatchTakePictureIntent();
+                            } else if (code == 2) {
+                                dispatchTakePictureIntent2();
+                            } else {
+                                dispatchTakePictureIntent3();
+                            }
+
                         }
                         // check for permanent denial of any permission
                         if (report.isAnyPermissionPermanentlyDenied()) {
@@ -560,16 +641,7 @@ public class ActivitiesActivity extends AppCompatActivity {
      * @return
      * @throws IOException
      */
-   /* private File createImageFile() throws IOException {
-        // Create an image file name
-        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        String mFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File mFile = File.createTempFile(mFileName, ".jpg", storageDir);
-        Log.d(TAG, "createImageFile: "+mFile);
-        // Save a file: path for use with ACTION_VIEW intents
-        return mFile;
-    }*/
+
     private File createImageFile() throws IOException {
         // Create an image file name
         @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
@@ -586,6 +658,38 @@ public class ActivitiesActivity extends AppCompatActivity {
         return image;
     }
 
+    private File createImageFile2() throws IOException {
+        // Create an image file name
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath2 = image.getAbsolutePath();
+        return image;
+    }
+
+    private File createImageFile3() throws IOException {
+        // Create an image file name
+        @SuppressLint("SimpleDateFormat") String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath3 = image.getAbsolutePath();
+        return image;
+    }
+
     private void saveData() {
 
         binding.progressCircular.setVisibility(View.VISIBLE);
@@ -594,7 +698,9 @@ public class ActivitiesActivity extends AppCompatActivity {
         // RequestBody requestFile = RequestBody.create(mPhotoFile, MediaType.parse("image/jpeg"));
 
         // MultipartBody.Part is used to send also the actual file name
-        MultipartBody.Part body = MultipartBody.Part.createFormData("visit[photo]", currentPhotoPath, requestFile);
+        MultipartBody.Part photoBody = MultipartBody.Part.createFormData("visit[photo]", currentPhotoPath, requestFile);
+        MultipartBody.Part transaction_slipBody = MultipartBody.Part.createFormData("visit[transaction_slip]", currentPhotoPath2, requestFile);
+        MultipartBody.Part transaction_registerBody = MultipartBody.Part.createFormData("visit[transaction_register]", currentPhotoPath3, requestFile);
 
         RequestBody cspCodeBody = RequestBody.create(csp_code, MediaType.parse("text/plain"));
         RequestBody question_101_body = RequestBody.create(question_101, MediaType.parse("text/plain"));
@@ -782,7 +888,8 @@ public class ActivitiesActivity extends AppCompatActivity {
                 comments_head_body,
                 question_514_body,
                 comments_branch_body,
-                body, latitudeBody, longitudeBody, tokenBody);
+                photoBody, transaction_slipBody, transaction_registerBody,
+                latitudeBody, longitudeBody, tokenBody);
         call.enqueue(new Callback<CreateVisitResponse>() {
             @Override
             public void onResponse(@NonNull Call<CreateVisitResponse> call, @NonNull Response<CreateVisitResponse> response) {

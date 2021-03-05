@@ -5,6 +5,7 @@ import com.vcspinfo.vevist.models.CSPDetailsListResponse;
 import com.vcspinfo.vevist.models.CreateVisitResponse;
 import com.vcspinfo.vevist.models.DashboardResponse;
 import com.vcspinfo.vevist.models.LoginResonse;
+import com.vcspinfo.vevist.models.VisitPendingReportModel;
 import com.vcspinfo.vevist.models.VisitReportModel;
 
 import java.util.List;
@@ -44,6 +45,10 @@ public interface ApiInterface {
     @Headers("Content-Type: application/json")
     @GET("VisitReports/{token}")
     Call<VisitReportModel> getVisitReports(@Path("token") String token);
+
+    @Headers("Content-Type: application/json")
+    @GET("VisitReports/PendingVisits/{token}")
+    Call<VisitPendingReportModel> getPendingVisitReports(@Path("token") String token);
 
     @Multipart
     @POST("CreateVisit")
@@ -144,7 +149,9 @@ public interface ApiInterface {
 
           //  @Part("visit[photo]" ) String photo
 
-            @Part MultipartBody.Part file,
+            @Part MultipartBody.Part photo,
+            @Part MultipartBody.Part transaction_slip,
+            @Part MultipartBody.Part transaction_register,
             @Part("visit[text_1]" ) RequestBody text_1,
             @Part("visit[text_2]" ) RequestBody text_2,
             @Part("token" ) RequestBody token

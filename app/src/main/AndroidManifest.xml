@@ -85,6 +85,9 @@
         <activity
             android:name=".activities.DashboardActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.PendingReportsActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
