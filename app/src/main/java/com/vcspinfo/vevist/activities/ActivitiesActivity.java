@@ -326,14 +326,14 @@ public class ActivitiesActivity extends AppCompatActivity {
 
             }
         });
-        binding.buttonRegister.setOnClickListener(new View.OnClickListener() {
+        binding.buttonSlip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage(2);
 
             }
         });
-        binding.buttonSlip.setOnClickListener(new View.OnClickListener() {
+        binding.buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectImage(3);
